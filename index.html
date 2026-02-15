@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neather Launcher - Modern Minecraft Launcher</title>
-    <!-- UPDATED: Favicon path -->
     <link rel="icon" type="image/png" href="assets/FABCION.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -730,36 +729,6 @@
             gap: 0.5rem;
         }
 
-        .download-counter {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .counter-icon {
-            color: var(--primary-green);
-            width: 28px;
-            height: 28px;
-        }
-
-        .counter-text {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-        }
-
-        .counter-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-green);
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-
         /* Versions Table */
         .table-container {
             overflow-x: auto;
@@ -893,7 +862,6 @@
 
     <nav>
         <div class="nav-container">
-            <!-- UPDATED: Logo path -->
             <img src="assets/logo.png" alt="Neather Launcher Logo" class="logo-img">
             <div class="nav-clock">
                 <i data-lucide="clock" class="clock-icon"></i>
@@ -998,7 +966,6 @@
             <div class="slider-container">
                 <div class="slider-wrapper">
                     <div class="slider-track" id="sliderTrack">
-                        <!-- UPDATED: Slider image paths -->
                         <div class="slide"><img src="assets/Screenshot 2026-02-15 134323.png" alt="Neather Launcher"></div>
                         <div class="slide"><img src="assets/Screenshot 2026-02-15 134333.png" alt="Neather Launcher"></div>
                         <div class="slide"><img src="assets/Screenshot 2026-02-15 134350.png" alt="Neather Launcher"></div>
@@ -1030,11 +997,6 @@
                     <i data-lucide="monitor" style="width: 20px; height: 20px;"></i>
                     Windows 10/11 Compatible
                 </p>
-                <div class="download-counter">
-                    <i data-lucide="users" class="counter-icon"></i>
-                    <span class="counter-text">Total Downloads:</span>
-                    <span class="counter-number" id="downloadCounter">Loading...</span>
-                </div>
             </div>
         </section>
 
@@ -1175,29 +1137,6 @@
         // Refresh from API every 10 minutes to stay accurate
         setInterval(updateClockFromAPI, 600000);
 
-        // Download Counter Management
-        const COUNTER_FILE = 'C:\\Users\\DevHub\\OneDrive\\Desktop\\Neather Launcher Website\\info.txt';
-        
-        function loadDownloadCount() {
-            // Since we can't directly access local filesystem from browser,
-            // this is a placeholder. In production, you'd need a backend server
-            // to read/write to the file, or use localStorage as an alternative
-            const count = localStorage.getItem('downloadCount') || '0';
-            document.getElementById('downloadCounter').textContent = count;
-        }
-
-        function incrementDownloadCount() {
-            let count = parseInt(localStorage.getItem('downloadCount') || '0');
-            count++;
-            localStorage.setItem('downloadCount', count.toString());
-            document.getElementById('downloadCounter').textContent = count;
-            
-            // In production, you would send this to a backend server that writes to the file
-            // fetch('/api/increment-download', { method: 'POST' });
-        }
-
-        loadDownloadCount();
-
         // Download Warning Modal
         const downloadWarningModal = document.getElementById('downloadWarningModal');
         const mainDownloadBtn = document.getElementById('mainDownloadBtn');
@@ -1230,9 +1169,6 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
-            // Increment download counter
-            incrementDownloadCount();
             
             // Close modal
             downloadWarningModal.classList.remove('active');
